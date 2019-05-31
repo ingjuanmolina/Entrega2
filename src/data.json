@@ -1,4 +1,4 @@
-[{"id":1,"name":"Node JS","description":"Curso de Node JS","value":1280,"mode":"Virtual","hours":12},
-    {"id":2,"name":"Java","description":"Curso de Java","value":1280,"mode":"Virtual","hours":12},
-    {"id":3,"name":"Python","description":"Curso de Python","value":1280,"mode":"Virtual","hours":12},
-    {"id":4,"name":"Angular","description":"Curso de Angular","value":1280,"mode":"Virtual","hours":12}]
+[{"id":1,"name":"Node JS","description":"Curso de Node JS","value":1280,"mode":"Virtual","hours":12,"state":"disponible"},
+    {"id":2,"name":"Java","description":"Curso de Java","value":1280,"mode":"Virtual","hours":12,"state":"disponible"},
+    {"id":3,"name":"Python","description":"Curso de Python","value":1280,"mode":"Virtual","hours":12,"state":"disponible"},
+    {"id":4,"name":"Angular","description":"Curso de Angular","value":1280,"mode":"Virtual","hours":12,"state":"disponible"}]

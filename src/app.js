@@ -30,8 +30,8 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/coordinador', (req, res) => {
-    res.render('coordinador', {
+app.get('/crear', (req, res) => {
+    res.render('createCourse', {
         title: 'Administrar Cursos'
     });
 });
@@ -42,9 +42,9 @@ app.get('/cursos', (req, res) => {
     });
 });
 
-app.post('/crear', (req, res) => {
+app.post('/createCourse', (req, res) => {
     console.log(req.body);
-    res.render('listarcursos', {
+    res.render('showCourseList', {
         title: 'Cursos'
     });
 })

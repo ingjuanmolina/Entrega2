@@ -6,7 +6,7 @@
 <div class="container-fluid">
     ...
 </div>
-<form action="/crear" method="POST">
+<form action="/createCourse" method="POST">
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="courseid">ID del curso</label>
@@ -40,7 +40,7 @@
             <input class="form-control" id="coursehours" name="coursehours" type="number" placeholder="Intensidad horaria">
         </div>
     </div>
-
+    <input type="hidden" name="cousestate" value="disponible">
     <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 

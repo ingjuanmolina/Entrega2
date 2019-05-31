@@ -1,6 +1,6 @@
 const hbs = require('hbs'); //Variable to handle hbs package features
 
-hbs.registerHelper('listar', () => {
+hbs.registerHelper('showCourseList', () => {
     let courseList = require('./data.json');
     
     let output = ''; //output from json object
@@ -12,6 +12,8 @@ hbs.registerHelper('listar', () => {
         <td>${course.name}</td>
         <td>${course.description}</td>
         <td>${course.value}</td>
+        <td>${course.mode}</td>
+        <td>${course.state}</td>
     </tr>`
     });
 
@@ -19,7 +21,7 @@ hbs.registerHelper('listar', () => {
     return output;
 });//End of registerHelper listar
 
-hbs.registerHelper('listarcollapse', () => {
+hbs.registerHelper('showCollapseCourse', () => {
     let courseList = require('./data.json');
     
     let output = ''; //output from json object
