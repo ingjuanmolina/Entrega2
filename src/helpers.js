@@ -17,9 +17,8 @@ hbs.registerHelper('showCourseList', () => {
     </tr>`
     });
 
-    console.log(output);
     return output;
-});//End of registerHelper listar
+});//End of registerHelper showCourseList
 
 hbs.registerHelper('showCollapseCourse', () => {
     let courseList = require('./data.json');
@@ -53,4 +52,4 @@ hbs.registerHelper('showCollapseCourse', () => {
     });
 
     return output;
-});//End of registerHelper listarcollapse
+});//End of registerHelper showCollapseCourse

@@ -8,6 +8,8 @@ const path = require('path'); //Variable to handle path package features
 
 const hbs = require('hbs'); //Variable to handle hbs package features
 
+const functions = require('./functions'); //Variable to manage operations over json file
+
 require('./helpers');
 
 //Used to read data from POST method
@@ -44,6 +46,20 @@ app.get('/cursos', (req, res) => {
 
 app.post('/createCourse', (req, res) => {
     console.log(req.body);
+
+    //Create a new course object
+    let course = {
+        id: req.body.courseid,
+        name: req.body.coursename,
+        description: req.body.coursedescription,
+        value: req.body.coursevalue,
+        mode: req.body.coursemode,
+        hours: req.body.coursehours,
+        state: req.body.cousestate
+    }
+
+    functions.create(course); //Pass course object to create function
+
     res.render('showCourseList', {
         title: 'Cursos'
     });
