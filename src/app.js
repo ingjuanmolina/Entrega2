@@ -39,7 +39,7 @@ app.get('/crear', (req, res) => {
 });
 
 app.get('/cursos', (req, res) => {
-    res.render('listarcursos', {
+    res.render('collapsedcourselist', {
         title: 'Cursos'
     });
 });
