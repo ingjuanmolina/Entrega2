@@ -49,6 +49,16 @@ const save = () => {
     })
 }
 
+const update = (name) => {
+    list(); //Initializes courses array from json object
+
+    let foundCourse = courseList.find( c => c.name === name); //Search for a course with the given name
+
+    foundCourse.state = foundCourse.state === 'Disponible' ? 'Cerrado' : 'Disponible';
+
+    save(); //Updates json file
+
+}//Fin de actualizar
 
 const actualizar = (nombre, asignatura, calificacion) => {
     list(); //Inicializa el array de estudiantes desde listado.json
@@ -82,6 +92,7 @@ const eliminar = (nombre) => {
 
 module.exports = {
     create,
+    update,
     actualizar, 
     eliminar
 }

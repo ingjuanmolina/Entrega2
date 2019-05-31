@@ -38,6 +38,12 @@ app.get('/crear', (req, res) => {
     });
 });
 
+app.get('/administrar', (req, res) => {
+    res.render('manageCourses', {
+        title: 'Administrar Cursos'
+    });
+});
+
 app.get('/cursos', (req, res) => {
     res.render('collapsedcourselist', {
         title: 'Cursos'
@@ -60,12 +66,23 @@ app.post('/createCourse', (req, res) => {
 
     functions.create(course); //Pass course object to create function
 
-    res.render('showCourseList', {
-        title: 'Cursos'
+    res.render('showAvailableCourseList', {
+        title: 'Cursos disponibles'
     });
-})
+});
 
-console.log(__dirname);
+app.post('/updateCourse', (req, res) => {
+    console.log(req.body);
+
+    //Create a new course object
+    let name = req.body.coursename;
+
+    functions.update(name); //Pass course object to create function
+
+    res.render('manageCourses', {
+        title: 'Administrar Cursos'
+    });
+});
 
 //Opens port 3000 listening
 app.listen(3000, () => {

@@ -1,20 +1,45 @@
 const hbs = require('hbs'); //Variable to handle hbs package features
 
-hbs.registerHelper('showCourseList', () => {
+hbs.registerHelper('showAvailableCourseList', () => {
     let courseList = require('./data.json');
-    
+
     let output = ''; //output from json object
 
     courseList.forEach(course => {
+        //Add course info only if state is available
+        if (course.state === 'disponible') {
+            output = output +
+                `<tr>
+                <td>${course.id}</td>
+                <td>${course.name}</td>
+                <td>${course.description}</td>
+                <td>${course.value}</td>
+                <td>${course.mode}</td>
+                <td>${course.state}</td>
+            </tr>`
+        }
+
+    });
+
+    return output;
+});//End of registerHelper showCourseList
+
+hbs.registerHelper('showFullCourseList', () => {
+    let courseList = require('./data.json');
+
+    let output = ''; //output from json object
+
+    courseList.forEach(course => {
+        //Add course info only if state is available
         output = output +
-    `<tr>
-        <td><a href="/listar?id=${course.id}">${course.id}</a></td>
-        <td>${course.name}</td>
-        <td>${course.description}</td>
-        <td>${course.value}</td>
-        <td>${course.mode}</td>
-        <td>${course.state}</td>
-    </tr>`
+            `<tr>
+                <td>${course.id}</td>
+                <td>${course.name}</td>
+                <td>${course.description}</td>
+                <td>${course.value}</td>
+                <td>${course.mode}</td>
+                <td>${course.state}</td>
+            </tr>`
     });
 
     return output;
@@ -22,14 +47,14 @@ hbs.registerHelper('showCourseList', () => {
 
 hbs.registerHelper('showCollapseCourse', () => {
     let courseList = require('./data.json');
-    
+
     let output = ''; //output from json object
 
     let i = 1
 
     courseList.forEach(course => {
         output = output +
-    `
+            `
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="heading${i}">
@@ -48,6 +73,21 @@ hbs.registerHelper('showCollapseCourse', () => {
         </div>
     </div>
     `
+        i++;
+    });
+
+    return output;
+});//End of registerHelper showCollapseCourse
+
+hbs.registerHelper('courseNames', () => {
+    let courseList = require('./data.json');
+
+    let output = ''; //output from json object
+
+    let i = 1
+
+    courseList.forEach(course => {
+        output = output +`<option value='${course.name}'>${course.name}</option>`
         i++;
     });
 

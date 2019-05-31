@@ -1,0 +1,41 @@
+{{>header}}
+<div>
+    <span class="display-4">
+        Cursos disponibles
+    </span>
+</div>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Modalidad</th>
+            <th scope="col">Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{{showFullCourseList}}}
+    </tbody>
+</table>
+
+<div>
+    <span class="display-4">
+        Actualizar estado de un curso
+    </span>
+
+    <form action="/updateCourse" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="coursemode">Seleccione el curso que desea actualizar</label>
+                <select class="form-control" name="coursename">
+                    {{{courseNames}}}
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+</div>
+{{>footer}}
