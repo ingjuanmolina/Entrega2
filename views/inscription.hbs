@@ -1,0 +1,54 @@
+{{>header}}
+<div>
+    <span class="display-4">
+        Inscripción a cursos
+    </span>
+</div>
+
+
+<div>
+    <form action="/inscription" method="POST">
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="studentId">Documento de identidad</label>
+                    <input type="number" class="form-control" id="studentId" name="studentId"
+                        placeholder="Número de documento del estudiante" required>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="studentmail">Correo electrónico</label>
+                    <input type="email" class="form-control" id="studentmail" name="studentmail"
+                        placeholder="mail@email.com" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="studentname">Nombre</label>
+                    <input type="text" class="form-control" id="studentname" name="studentname"
+                        placeholder="Nombre del estudiante" required>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="studentphone">Teléfono</label>
+                    <input type="tel" class="form-control" id="studentphone" name="studentphone" placeholder="5556789"
+                        required>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="coursemode">Cursos disponibles</label>
+                <select class="form-control" name="coursename">
+                    {{{courseNames}}}
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Inscribir</button>
+    </form>
+</div>
+{{>footer}}

@@ -10,6 +10,8 @@ const hbs = require('hbs'); //Variable to handle hbs package features
 
 const functions = require('./functions'); //Variable to manage operations over json file
 
+const inscriptions = require('./courses'); //Variable to manage inscriptions over json file
+
 require('./helpers');
 
 //Used to read data from POST method
@@ -50,8 +52,19 @@ app.get('/cursos', (req, res) => {
     });
 });
 
+app.get('/matricular', (req, res) => {
+    res.render('inscription', {
+        title: 'inscripción de Cursos'
+    });
+});
+
+app.get('/inscripciones', (req, res) => {
+    res.render('manageInscriptions', {
+        title: 'Administración de inscripciones'
+    });
+});
+
 app.post('/createCourse', (req, res) => {
-    console.log(req.body);
 
     //Create a new course object
     let course = {
@@ -72,7 +85,6 @@ app.post('/createCourse', (req, res) => {
 });
 
 app.post('/updateCourse', (req, res) => {
-    console.log(req.body);
 
     //Create a new course object
     let name = req.body.coursename;
@@ -84,7 +96,42 @@ app.post('/updateCourse', (req, res) => {
     });
 });
 
+
+app.post('/inscription', (req, res) => {
+    console.log(req.body);
+
+    //Create a new inscription object
+ 
+    let inscription = {
+        studentid: req.body.studentId,
+        studentname: req.body.studentname,
+        studentmail: req.body.studentmail,
+        studentphone: req.body.studentphone,
+        coursename: req.body.coursename,
+    }
+
+    let message = inscriptions.create(inscription); //Pass course object to create function
+
+    res.render('inscriptionresult', {
+        title: 'Inscripción al curso',
+        result: message
+    });
+});//End of POST inscription
+
 //Opens port 3000 listening
 app.listen(3000, () => {
     console.log('Escuchando en el puerto 3000');
+});
+
+app.post('/updateInscription', (req, res) => {
+
+    //Create a new course object
+    let name = req.body.coursename;
+    let id = req.body.studentid;
+
+    inscriptions.update(name, id); //Pass course object to create function
+
+    res.render('manageInscriptions', {
+        title: 'Administrar Inscripciones'
+    });
 });

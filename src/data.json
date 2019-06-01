@@ -1,1 +1,5 @@
-[{"id":1,"name":"Node JS","description":"Curso de Node JS","value":1280,"mode":"Virtual","hours":12,"state":"Disponible"},{"id":2,"name":"Java","description":"Curso de Java","value":1280,"mode":"Virtual","hours":12,"state":"Disponible"},{"id":3,"name":"Python","description":"Curso de Python","value":1280,"mode":"Virtual","hours":12,"state":"Cerrado"},{"id":4,"name":"Angular","description":"Curso de Angular","value":1280,"mode":"Virtual","hours":12,"state":"Disponible"},{"id":"5","name":"Visual Basic","description":"Introducción a Visual Basic .Net","value":"150000","mode":"presencial","hours":"18","state":"Disponible"},{"mode":"Node JS"}]
+[{"id":1,"name":"Node JS","description":"Curso de Node JS","value":500000,"mode":"Virtual","hours":12,"state":"Disponible"},
+ {"id":2,"name":"Java","description":"Curso de Java","value":800000,"mode":"Virtual","hours":12,"state":"Disponible"},
+ {"id":3,"name":"Python","description":"Curso de Python","value":1200000,"mode":"Virtual","hours":12,"state":"Cerrado"},
+ {"id":4,"name":"Angular","description":"Curso de Angular","value":900000,"mode":"Virtual","hours":12,"state":"Disponible"},
+ {"id":"5","name":"Visual Basic","description":"Introducción a Visual Basic .Net","value":1500000,"mode":"presencial","hours":"18","state":"Disponible"}]
