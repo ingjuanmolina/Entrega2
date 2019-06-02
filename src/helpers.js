@@ -100,16 +100,24 @@ hbs.registerHelper('courseNames', () => {
     return output;
 });//End of registerHelper showCollapseCourse
 
-hbs.registerHelper('showCollapseInscriptions', () => {
+hbs.registerHelper('showCollapsedInscriptions', () => {
+    
     let inscriptions = require('./inscription.json');
+
+    console.log('From showCollapsedInscriptions');
+
+    console.log(inscriptions);
+
     let courses = require('./data.json');
 
     let output = ''; //output from json object
 
     let i = 1
 
-    courses.forEach(course => {
+    
 
+    courses.forEach(course => {
+        
         let foundInscriptions = inscriptions.filter(i => i.coursename === course.name);
         
         output += 

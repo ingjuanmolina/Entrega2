@@ -79,8 +79,8 @@ app.post('/createCourse', (req, res) => {
 
     functions.create(course); //Pass course object to create function
 
-    res.render('showAvailableCourseList', {
-        title: 'Cursos disponibles'
+    res.render('manageCourses', {
+        title: 'Administrar Cursos'
     });
 });
 
@@ -112,7 +112,7 @@ app.post('/inscription', (req, res) => {
 
     let message = inscriptions.create(inscription); //Pass course object to create function
 
-    res.render('inscriptionresult', {
+    res.render('resultpage', {
         title: 'Inscripción al curso',
         result: message
     });
@@ -131,7 +131,10 @@ app.post('/updateInscription', (req, res) => {
 
     inscriptions.update(name, id); //Pass course object to create function
 
-    res.render('manageInscriptions', {
-        title: 'Administrar Inscripciones'
+    let message =  "Se ha retirado al estudiante del curso de " + name;
+
+    res.render('resultpage', {
+        title: 'Administrar Inscripciones',
+        result: message
     });
 });

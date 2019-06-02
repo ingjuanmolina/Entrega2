@@ -1,3 +1,1 @@
-[{"studentid":"1970","studentname":"Juan","studentmail":"Juan@rmail.com","studentphone":"6665432","coursename":"Node JS"}
-    ,{"studentid":"70409","studentname":"Carlos","studentmail":"carlos@rmail.com","studentphone":"3445567","coursename":"Java"},
-    {"studentid":"1909","studentname":"Luis","studentmail":"luis@rmail.com","studentphone":"8765431","coursename":"Java"}]
+[{"studentid":"1970","studentname":"Juan","studentmail":"Juan@rmail.com","studentphone":"6665432","coursename":"Node JS"},{"studentid":"70409","studentname":"Carlos","studentmail":"carlos@rmail.com","studentphone":"3445567","coursename":"Java"},{"studentid":"1909","studentname":"Luis","studentmail":"luis@rmail.com","studentphone":"8765431","coursename":"Java"}]
