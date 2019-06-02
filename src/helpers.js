@@ -104,17 +104,16 @@ hbs.registerHelper('showCollapsedInscriptions', () => {
     
     let inscriptions = require('./inscription.json');
 
+    /*
     console.log('From showCollapsedInscriptions');
 
     console.log(inscriptions);
 
     let courses = require('./data.json');
-
+    */
     let output = ''; //output from json object
 
     let i = 1
-
-    
 
     courses.forEach(course => {
         
