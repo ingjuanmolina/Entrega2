@@ -43,27 +43,24 @@ const list = () => {
 }
 
 const save = () => {
+
     let data = JSON.stringify(inscriptions);
 
-
+    
     fs.writeFile('./src/inscription.json', data, (err) => {
         if (err) throw (err);
         console.log('Registro guardado con éxito');
-        console.log(inscriptions);
-    })
+    });
 }
 
 const update = (name, id) => {
+
     list(); //Initializes courses array from json object
 
     inscriptions = inscriptions.filter(i => !(i.studentid === id &&
         i.coursename === name)); //Search for a course with the given name
 
-    //console.log(inscriptions);
-
     save(); //Updates json file
-
-    console.log("After Update");
 
 }//Fin de actualizar
 

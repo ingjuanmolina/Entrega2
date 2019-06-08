@@ -1,5 +1,7 @@
 const hbs = require('hbs'); //Variable to handle hbs package features
 
+const fs = require('fs');
+
 hbs.registerHelper('showAvailableCourseList', () => {
     let courseList = require('./data.json');
 
@@ -46,6 +48,7 @@ hbs.registerHelper('showFullCourseList', () => {
 });//End of registerHelper showCourseList
 
 hbs.registerHelper('showCollapseCourse', () => {
+
     let courseList = require('./data.json');
 
     let output = ''; //output from json object
@@ -102,41 +105,65 @@ hbs.registerHelper('courseNames', () => {
 
 hbs.registerHelper('showCollapsedInscriptions', () => {
     
-    let inscriptions = require('./inscription.json');
+    let allCourses = require('./data.json');
 
-    /*
-    console.log('From showCollapsedInscriptions');
+    let allInscriptions = JSON.parse(fs.readFileSync('src/inscription.json', 'utf-8'));
 
-    console.log(inscriptions);
+    let courseNumber = 1
 
-    let courses = require('./data.json');
-    */
-    let output = ''; //output from json object
+    let output = '';
 
-    let i = 1
-
-    courses.forEach(course => {
+    allCourses.forEach( course => {
         
-        let foundInscriptions = inscriptions.filter(i => i.coursename === course.name);
-        
-        output += 
-        `
-        <div class="accordion" id="accordionExample">
-            <div class="card">
-                <div class="card-header" id="heading${i}">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapseOne" style="color:black; font-weight: bold;">
-                        ${course.name}
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" aria-expanded="false" data-parent="#accordionExample">
-                    <div class="card-body">
-        `
+        let foundInscriptions = allInscriptions.filter(i => i.coursename === course.name);
+
+        output += setCourseHeader(courseNumber, course.name);
+           
         if (foundInscriptions.length > 0){
-            output +=
-            `
-            <form action="/updateInscription" method="POST">
+            
+            output += setInscriptionHeader(courseNumber);
+            
+            let row = 1;
+            foundInscriptions.forEach( ins => {
+                output += setInscriptionRow(ins, row);
+                row++;
+            });
+
+            output += setInscriptionFooter();
+     
+        }//End if
+
+        output += setCourserFooter();
+
+        courseNumber++;
+
+    });//End of course.foreach
+
+    //console.log(output);
+
+    allInscriptions = null;
+
+    return output;
+});//End of registerHelper showCollapseInscriptions
+
+let setCourseHeader = (courseNumber, courseName) =>{
+    return `
+        <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="heading${courseNumber}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${courseNumber}" aria-expanded="true" aria-controls="collapseOne" style="color:black; font-weight: bold;">
+                    ${courseName}
+                    </button>
+                </h2>
+            </div>
+        `;
+}
+
+let setInscriptionHeader = (courseNumber) => {
+    return `
+        <div id="collapse${courseNumber}" class="collapse" aria-labelledby="heading${courseNumber}" aria-expanded="false" data-parent="#accordionExample">
+        <div class="card-body">
             <table class="table table-bordered table-sm">
                 <thead class="table-dark">
                     <tr>
@@ -150,43 +177,38 @@ hbs.registerHelper('showCollapsedInscriptions', () => {
                 <tbody>
 
             `;
-            foundInscriptions.forEach(ins => {
-                output += 
-                    `
-                            <tr>
-                                <td>${ins.studentid}</td>
-                                <td>${ins.studentname}</td>
-                                <td><a href="mailto:${ins.studentmail}">${ins.studentmail}</td>
-                                <td>${ins.studentphone}</td>
-                                <td>
-                                    <input type="hidden" value="${ins.studentid}" name="studentid"/>
-                                    <input type="hidden" value="${ins.coursename}" name="coursename"/>
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </td>
-                            </tr>
-                `;
-            });
+}
 
-            output += 
-            `
-                    </tbody>
-                </table>
+let setInscriptionRow = (ins, row) => {
+    return `
+    <tr>
+        <td>${ins.studentid}</td>
+        <td>${ins.studentname}</td>
+        <td><a href="mailto:${ins.studentmail}">${ins.studentmail}</td>
+        <td>${ins.studentphone}</td>
+        <td>
+            <form action="/updateInscription" method="POST">
+                <input type="hidden" value="${ins.studentid}" name="studentid"/>
+                <input type="hidden" value="${ins.coursename}" name="coursename"/>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
             </form>
+        </td>
+    </tr>
+`;
+}
 
-            `;
+let setInscriptionFooter = () =>{
+  return `
+                </tbody>
+            </table>
+        </div>
+        </div>
+    `;
+}
 
-        }
-
-        output += 
-        `
+let setCourserFooter = () => {
+    return `
                     </div>
                 </div>
-            </div>
-        </div>
-        `
-        i++;
-
-    });
-
-    return output;
-});//End of registerHelper showCollapseInscriptions
+                `;
+}

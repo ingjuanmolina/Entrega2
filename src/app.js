@@ -118,23 +118,23 @@ app.post('/inscription', (req, res) => {
     });
 });//End of POST inscription
 
-//Opens port 3000 listening
-app.listen(3000, () => {
-    console.log('Escuchando en el puerto 3000');
-});
-
 app.post('/updateInscription', (req, res) => {
-
-    //Create a new course object
+    
     let name = req.body.coursename;
+
     let id = req.body.studentid;
 
     inscriptions.update(name, id); //Pass course object to create function
 
     let message =  "Se ha retirado al estudiante del curso de " + name;
 
-    res.render('resultpage', {
+    res.render('manageInscriptions', {
         title: 'Administrar Inscripciones',
         result: message
     });
 });
+
+//Opens port 3000 listening
+app.listen(3000, () => {
+    console.log('Escuchando en el puerto 3000');
+}); 
